@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>폼과 인풋 태그 실습</title>
+</head>
+
+<body>
+    <h1>회원 가입 양식 (폼과 인풋 실습)</h1>
+
+    <!-- 
+        1. form 태그: 사용자가 입력한 데이터를 서버로 전송하는 영역
+        - action: 데이터를 보낼 목적지 주소 (현재는 #으로 설정하여 자기 자신으로 전송)
+        - method: 전송 방식 (GET: 주소창에 데이터 노출, POST: 패킷 본문에 숨겨서 전송)
+    -->
+    <form action="#" method="GET">
+        
+        <!-- 2. label 태그: input 요소의 이름표. id와 연결하여 클릭 영역 확장 및 웹 접근성 향상 -->
+        <label for="user_id">아이디:</label>
+        <!-- 3. input type="text": 한 줄 텍스트 입력. name 속성이 서버에서 받는 Key값이 됨 -->
+        <input type="text" id="user_id" name="userId" placeholder="아이디를 입력하세요">
+        <br><br>
+
+        <label for="user_pw">비밀번호:</label>
+        <!-- 4. input type="password": 입력 시 내용이 별표(*)로 가려짐 -->
+        <input type="password" id="user_pw" name="userPw">
+        <br><br>
+
+        <label for="user_intro">자기소개:</label>
+        <!-- 5. textarea: 여러 줄의 텍스트를 입력받는 태그 -->
+        <textarea id="user_intro" name="userIntro" rows="3" cols="30"></textarea>
+        <br><br>
+
+        <!-- 6. input type="radio": 여러 개 중 하나만 선택. name 속성값이 같아야 그룹으로 묶임 -->
+        성별: 
+        <input type="radio" id="male" name="gender" value="m"> <label for="male">남성</label>
+        <input type="radio" id="female" name="gender" value="f"> <label for="female">여성</label>
+        <br><br>
+
+        <!-- 7. input type="checkbox": 여러 개를 동시에 선택 가능 -->
+        관심 분야:
+        <input type="checkbox" id="coding" name="hobby" value="code"> <label for="coding">코딩</label>
+        <input type="checkbox" id="music" name="hobby" value="music"> <label for="music">음악</label>
+        <input type="checkbox" id="sports" name="hobby" value="sports"> <label for="sports">운동</label>
+        <br><br>
+
+        <label for="region">거주 지역:</label>
+        <!-- 8. select: 드롭다운 선택 목록 -->
+        <select id="region" name="userRegion">
+            <option value="seoul">서울</option>
+            <option value="busan">부산</option>
+            <option value="daegu">대구</option>
+            <option value="jeju">제주</option>
+        </select>
+        <br><br>
+
+        <!-- 9. button type="submit": 폼에 입력된 데이터를 action에 지정된 주소로 전송 -->
+        <button type="submit">가입하기 (데이터 전송)</button>
+        <!-- 10. button type="reset": 입력된 내용을 모두 초기화 -->
+        <button type="reset">초기화</button>
+
+    </form>
+
+    <!-- 
+        [실습 팁]
+        - '가입하기' 버튼을 누른 후 브라우저 주소창(URL)을 확인해 보세요.
+        - 각 input의 name 값과 사용자가 입력한 데이터가 어떻게 연결되는지 확인하는 것이 핵심입니다.
+    -->
+</body>
+
+</html>

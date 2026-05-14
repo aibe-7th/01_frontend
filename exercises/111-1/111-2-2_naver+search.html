@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>폼과 인풋 태그 실습</title>
+</head>
+
+<body>
+    <h1>네이버 검색 서비스 구현 (GET 방식 실습)</h1>
+
+    <!-- 
+        [실습 목표]
+        실제 네이버 검색 엔진의 URL 구조를 분석하여, 
+        우리가 만든 HTML 폼이 어떻게 실제 서비스와 연동되는지 확인합니다.
+
+        - action: "https://search.naver.com/search.naver" (네이버 검색 엔진 주소)
+        - method: "GET" (주소창에 검색어가 노출되는 방식)
+    -->
+    <form action="https://search.naver.com/search.naver" method="GET">
+        
+        <!-- 
+            1. ssc 속성 (검색 탭 선택):
+            네이버 URL에서 ssc=tab.nx.all 부분에 대응됩니다.
+            select의 name="ssc"가 URL의 key가 되고, 선택된 option의 value가 데이터가 됩니다.
+        -->
+        <label for="search_tab">검색 영역:</label>
+        <select name="ssc" id="search_tab">
+            <option value="tab.nx.all">통합 검색</option>
+            <option value="tab.image.all">이미지 검색</option>
+            <option value="tab.blog.all">블로그 검색</option>
+        </select>
+        <br><br>
+
+        <!-- 
+            2. query 속성 (검색어 입력):
+            네이버 URL에서 query=검색어 부분에 대응됩니다.
+            사용자가 입력창에 적은 내용이 query라는 이름으로 전달됩니다.
+        -->
+        <label for="search_input">검색어:</label>
+        <input type="text" name="query" id="search_input" placeholder="검색어를 입력하세요" required>
+        
+        <button type="submit">네이버 검색</button>
+
+    </form>
+
+    <!-- 
+        [분석 포인트]
+        - 검색 후 이동된 네이버의 주소창을 확인하세요.
+        - 우리가 설정한 name="ssc"와 name="query"가 URL에 어떻게 포함되어 있나요?
+        - 예: ...?ssc=tab.image.all&query=고양이
+    -->
+</body>
+
+</html>
