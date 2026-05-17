@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 박스 모델 - 블록 vs 인라인 & 숨김 처리</title>
+    <style>
+        body {
+            font-family: 'Pretendard', sans-serif;
+            color: #374151;
+        }
+
+        /* 1. 블록 요소: 가로세로 지정 및 상하좌우 여백 완벽 작동 */
+        .block-box {
+            background-color: #fca5a5;
+            width: 150px;
+            height: 50px;
+            margin: 15px;
+            padding: 10px;
+        }
+
+        /* 2. 인라인 요소: 가로세로 크기가 작동 안 하며 상하 여백이 주변 레이아웃을 밀어내지 못함 */
+        .inline-span {
+            background-color: #fef08a;
+            width: 150px;
+            height: 50px;
+            margin: 15px;
+            padding: 10px;
+        }
+
+        /* display-box 기본 공통 스타일 */
+        .display-box {
+            display: inline-block;
+            width: 80px;
+            height: 40px;
+            background-color: #10b981;
+            color: white;
+            text-align: center;
+            line-height: 40px;
+        }
+
+        /* 3. display: none (공간 자체를 완전 파괴) */
+        .d-none {
+            display: none;
+        }
+
+        /* 4. visibility: hidden (투명해질 뿐 물리적인 공간 보존) */
+        .v-hidden {
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <h1>2. Block vs Inline 및 display: none vs visibility: hidden 실습</h1>
+    <hr>
+
+    <h2>[실습 1] Block과 Inline의 크기 및 마진 비교</h2>
+    <h3>Block 요소 (div)</h3>
+    <div class="block-box">Block 1</div>
+    <div class="block-box">Block 2</div>
+
+    <h3>Inline 요소 (span)</h3>
+    <span class="inline-span">Inline 1</span>
+    <span class="inline-span">Inline 2</span>
+
+    <hr>
+
+    <h2>[실습 2] 요소를 보이지 않게 숨기는 2대 속성 대조</h2>
+    
+    <h3>1) 기본 상태 (박스 3개 정상 노출)</h3>
+    <div class="display-box">박스 1</div>
+    <div class="display-box">박스 2</div>
+    <div class="display-box">박스 3</div>
+
+    <h3>2) display: none 적용 (박스 2번의 물리 공간 소멸)</h3>
+    <div class="display-box">박스 1</div>
+    <div class="display-box d-none">박스 2</div>
+    <div class="display-box">박스 3</div>
+
+    <h3>3) visibility: hidden 적용 (박스 2번은 투명하나 공간 유지)</h3>
+    <div class="display-box">박스 1</div>
+    <div class="display-box v-hidden">박스 2</div>
+    <div class="display-box">박스 3</div>
+</body>
+</html>

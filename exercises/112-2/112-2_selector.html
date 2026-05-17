@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 선택자와 명시도 실습</title>
+
+    <!-- [2. 내부 스타일 시트 작성] -->
+    <style>
+        /* 1. 태그 선택자 (1점) */
+        p {
+            color: gray;
+        }
+
+        /* 2. 클래스 선택자 (10점) */
+        .class-style {
+            color: green;
+        }
+
+        /* 3. 아이디 선택자 (100점) */
+        #id-style {
+            color: purple;
+        }
+
+        /* 4. !important 선언 (무한대 점수) */
+        .important-style {
+            color: orangered !important;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>CSS 선택자와 명시도(우선순위) 실습</h1>
+    <p>아래 문단들의 색상 변화를 확인하며 명시도(우선순위 점수)의 원리를 이해해 봅시다.</p>
+
+    <hr>
+
+    <h2>1. 기본 선택자 확인</h2>
+
+    <!-- 태그 선택자(gray)만 적용됨 -->
+    <p>이 문단은 일반 p 태그입니다. (회색)</p>
+
+    <!-- 태그 선택자(1점) vs 클래스 선택자(10점) 충돌 -> 클래스 승리 -->
+    <p class="class-style">이 문단은 클래스가 적용되었습니다. (초록색)</p>
+
+    <!-- 태그(1점) vs 클래스(10점) vs 아이디(100점) 충돌 -> 아이디 승리 -->
+    <p id="id-style" class="class-style">이 문단은 클래스와 아이디가 동시에 적용되었습니다. (보라색)</p>
+
+    <hr>
+
+    <h2>2. 명시도 끝판왕 비교 (인라인 vs !important)</h2>
+
+    <!-- 아이디(100점) vs 인라인 스타일(1000점) 충돌 -> 인라인(style 속성) 승리 -->
+    <p id="id-style" style="color: blue;">
+        이 문단은 아이디(#id-style: 보라)와 인라인 스타일(style: 파랑)이 충돌합니다. (파란색)
+    </p>
+
+    <!-- 인라인 스타일(1000점) vs !important(무한대) 충돌 -> !important 승리 -->
+    <p class="important-style" style="color: blue;">
+        이 문단은 인라인 스타일(style: 파랑)과 !important(important-style: 주황)가 충돌합니다. (주황색)
+    </p>
+
+    <!-- 
+        [실습 정리]
+        - 명시도 점수: 태그(1점) < 클래스(10점) < 아이디(100점) < 인라인(1000점) < !important(무한대)
+        - 동점인 경우: 코드가 더 아래쪽에(나중에) 선언된 스타일이 덮어씁니다.
+    -->
+</body>
+
+</html>

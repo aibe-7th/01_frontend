@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 박스 모델 - 박스 사이징 실습</title>
+    <style>
+        body {
+            font-family: 'Pretendard', sans-serif;
+            color: #374151;
+            line-height: 1.6;
+        }
+
+        /* 공통 박스 스타일 */
+        .box {
+            width: 200px;
+            height: 100px;
+            padding: 20px;
+            border: 5px solid #2563eb;
+            background-color: #dbeafe;
+            margin-bottom: 25px;
+        }
+
+        /* 1. 기본값: 가로/세로 크기에 padding과 border가 더해져 최종 크기가 불어남 */
+        .content-box-test {
+            box-sizing: content-box;
+        }
+
+        /* 2. 실무형: 가로/세로 200px*100px 안에 padding과 border를 모두 구겨 넣음 */
+        .border-box-test {
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <h1>1. 박스 모델 및 박스 사이징 (box-sizing) 실습</h1>
+    <p>개발자 도구(F12 -> Elements -> Computed)를 열어 두 박스의 실제 가로폭(width)을 측정해 보세요.</p>
+    <hr>
+
+    <h3>1) content-box (기본값)</h3>
+    <p>CSS 지정 크기(200px) 외에 패딩(좌우 40px)과 보더(좌우 10px)가 합산되어 <strong>실제 가로 크기 250px</strong>로 불어납니다.</p>
+    <div class="box content-box-test">
+        content-box 테스트
+    </div>
+
+    <h3>2) border-box (실무 표준)</h3>
+    <p>패딩과 보더를 200px 안에 자동 흡수시켜 <strong>실제 가로 크기 200px</strong>를 그대로 유지합니다.</p>
+    <div class="box border-box-test">
+        border-box 테스트
+    </div>
+</body>
+</html>

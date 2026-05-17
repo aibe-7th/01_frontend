@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- [1. SEO 메타데이터 실습] -->
+    <title>James의 포트폴리오 웹사이트</title>
+    <meta name="description" content="HTML과 CSS로 정교하게 설계한 James의 신입 프론트엔드 포트폴리오입니다.">
+
+    <!-- [2. 오픈그래프 미리보기 실습] -->
+    <meta property="og:title" content="James의 포트폴리오">
+    <meta property="og:description" content="HTML과 CSS만으로 가꾼 정적 웹사이트 배포 페이지입니다.">
+    <!-- 
+        [og:image 실습 가이드]
+        - 링크 공유 시 나타날 카드 뉴스의 대표 이미지 주소(웹 절대경로)입니다.
+        - 프리뷰 이미지 확보 방법:
+          1) 무료 고화질 사이트인 Unsplash(https://unsplash.com/ko)에서 알맞은 이미지를 무료 다운로드
+          2) 또는 완성된 본인 사이트를 단축키로 직접 캡처 (Mac: Cmd + Shift + 5 / Windows: Win + Shift + S)
+          * 획득한 이미지 파일을 프로젝트 폴더 내에 함께 업로드하고, 그 이미지의 인터넷 절대경로를 아래 content에 기입합니다.
+    -->
+    <meta property="og:image" content="https://james.github.io/portfolio/assets/thumbnail.png">
+
+    <!-- [3. 파비콘 연동 실습] -->
+    <!-- 
+        [Favicon 실습 가이드]
+        - 브라우저 탭 이름 왼쪽에 표시되는 사이트 대표 아이콘입니다.
+        - 파비콘 파일 생성 및 자세한 코드 세트 연동법은 아래 교안을 정독하여 실습을 완료하십시오:
+          * 교안 위치: [교안/자료/1_프런트엔드/113-정적+웹+배포.md]의 'Favicon' 영역 참고
+          * (Google AI Studio 또는 Arena AI로 정방형 로고 생성 -> RealFaviconGenerator.net 변환 후 저장소에 파일 업로드)
+    -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- [4. 웹폰트 실습 및 단순 스타일] -->
+    <style>
+        /* [웹폰트 다변화 실습] 
+           - 제목, 내용, 강조 텍스트에 각각 어울리는 상이한 웹폰트를 실시간 로드해 매칭합니다.
+        */
+
+        /* 1) 제목용: 페이퍼로지 (Paperlogy) */
+        @import url('https://cdn.jsdelivr.net/gh/fonts-archive/Paperlogy/Paperlogy.css');
+
+        /* 2) 내용용: 프리텐다드 (Pretendard) */
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+        /* 3) 강조용: 샌드박스 어그로체 (SBAggroB) */
+        @font-face {
+            font-family: 'SBAggroB';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            /* [내용] 본문은 가독성이 우수한 프리텐다드 기본 지정 */
+            font-family: 'Pretendard', sans-serif;
+            text-align: center;
+            line-height: 1.7;
+            color: #374151;
+        }
+
+        h1,
+        h2 {
+            /* [제목] 제목 영역은 현대적인 분위기의 페이퍼로지 서체 대입 */
+            font-family: 'Paperlogy', sans-serif;
+            color: #1d4ed8;
+        }
+
+        strong,
+        .highlight {
+            /* [강조] 굵고 개성 넘치는 어그로체를 활용해 가독성 극대화 */
+            font-family: 'SBAggroB', sans-serif;
+            color: #dc2626;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Hello, I'm James! (페이퍼로지 제목)</h1>
+    <p>이 웹사이트는 검색 엔진 최적화(SEO), 오픈그래프 미리보기, 파비콘, 그리고 <strong>3종의 다변화된 웹폰트</strong>가 일괄 적용된 상태입니다.</p>
+
+    <!-- [이미지 구도 실습] HTML 고유 속성(width, height)과 body의 text-align을 활용한 이미지 중앙 정렬 및 간격 배치 -->
+    <br>
+    <img src="https://picsum.photos/400/200" width="400" height="200" alt="James의 포트폴리오 대표 이미지"
+        title="랜덤하게 생성된 포트폴리오 메인 배너">
+    <br><br>
+
+    <h2>GitHub Pages 배포 가이드 (페이퍼로지 부제목)</h2>
+    <p>이 파일의 이름을 <span class="highlight">index.html로 변경</span>하여 GitHub Public 저장소에 업로드하고 설정하면 전 세계 누구나 볼 수 있게 배포됩니다.
+    </p>
+</body>
+
+</html>
+
+
+
+</html>

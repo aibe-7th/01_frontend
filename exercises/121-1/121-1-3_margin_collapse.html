@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 박스 모델 - 마진 병합 현상</title>
+    <style>
+        body {
+            font-family: 'Pretendard', sans-serif;
+            color: #374151;
+        }
+
+        .container {
+            background-color: #f3f4f6;
+            width: 400px;
+            overflow: hidden; /* 영역 마진 병합 외부 팽창 방지 */
+            border: 1px solid #d1d5db;
+        }
+
+        .box-top {
+            background-color: #a855f7;
+            color: white;
+            height: 50px;
+            /* 아래쪽 마진 20px 지정 */
+            margin-bottom: 20px;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        .box-bottom {
+            background-color: #ec4899;
+            color: white;
+            height: 50px;
+            /* 위쪽 마진 30px 지정 */
+            margin-top: 30px;
+            text-align: center;
+            line-height: 50px;
+            /* 위 30px과 아래 20px이 마주쳐, 합산 50px이 아닌 큰 값인 '30px'로 마진이 병합됩니다. */
+        }
+    </style>
+</head>
+<body>
+    <h1>3. 마진 병합 현상 (Margin Collapse) 실습</h1>
+    <p>두 마주한 블록 요소의 상하 여백이 만날 때 합산되지 않고 더 큰 마진 하나로 병합되는 현상입니다.</p>
+    <hr>
+
+    <div class="container">
+        <div class="box-top">위쪽 블록 (margin-bottom: 20px;)</div>
+        <div class="box-bottom">아래쪽 블록 (margin-top: 30px;)</div>
+    </div>
+    
+    <p>개발자 도구(F12)의 마우스 선택 도구로 두 박스 사이의 빈 간격 영역을 가리키면, <strong>겹쳐진 30px 크기의 마진 영역</strong>을 주황색 음영으로 확인할 수 있습니다.</p>
+</body>
+</html>

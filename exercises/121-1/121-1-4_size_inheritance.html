@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 박스 모델 - 단위와 상속</title>
+    <style>
+        /* 루트(html) 기본 크기 16px 고정 */
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            line-height: 1.6;
+        }
+
+        /* 1. 상속성 테스트용 부모 영역 */
+        .parent-box {
+            /* 글꼴 및 색상은 자식에게 상속됩니다. */
+            color: #2563eb;
+            font-size: 16px;
+            
+            /* 박스 모델 계열 속성(border, padding, margin)은 자식에게 절대 상속되지 않습니다! */
+            border: 3px solid #10b981;
+            padding: 15px;
+            margin-bottom: 30px;
+        }
+
+        .child-box {
+            background-color: #f3f4f6;
+        }
+
+        /* 2. em: 현재 폰트 크기 기준 배수 */
+        .em-box {
+            font-size: 1.5em; /* 부모 16px * 1.5 = 24px */
+        }
+
+        /* 3. rem: html 루트 크기 기준 배수 */
+        .rem-box {
+            font-size: 2rem; /* 루트 16px * 2 = 32px */
+        }
+    </style>
+</head>
+<body>
+    <h1>4. CSS 속성의 상속(Inheritance) 및 크기 단위(em / rem) 실습</h1>
+    <hr>
+
+    <h2>[실습 1] CSS 속성 상속 검증</h2>
+    <div class="parent-box">
+        부모 상자 (.parent-box)
+        <p>파란 테두리와 안쪽 여백을 부여했습니다. 이 텍스트는 부모의 글자색(파랑)을 <strong>자동 상속</strong> 받았습니다.</p>
+        
+        <div class="child-box">
+            자식 상자 (.child-box)
+            <p>하지만 부모의 초록색 테두리(Border)나 안쪽 여백(Padding)은 자식에게 복사·상속되지 않습니다.</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>[실습 2] em과 rem 단위 크기 측정</h2>
+    
+    <div style="font-size: 20px; border: 1px dashed gray; padding: 10px;">
+        부모 폰트 크기를 20px로 선언한 콘텐트 영역
+        
+        <p class="em-box">이곳은 1.5em입니다. (부모 20px * 1.5 = 30px)</p>
+        <p class="rem-box">이곳은 2rem입니다. (Root 16px * 2 = 32px)</p>
+    </div>
+</body>
+</html>

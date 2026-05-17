@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>색상과 폰트 스타일 실습 (인라인 중심)</title>
+</head>
+
+<body>
+    <!-- [1. 인라인 스타일을 활용한 제목 꾸미기] -->
+    <h1 style="color: #4f46e5; text-align: center; font-family: sans-serif;">
+        색상과 폰트 스타일 실습
+    </h1>
+
+    <hr>
+
+    <!-- [2. 다양한 색상(Color) 표현 실습] -->
+    <h2>1. 색상 표현 방식 (Color Styles)</h2>
+
+    <!-- 브라우저 제공 기본 색상 이름 (Color Name) 사용 -->
+    <p style="color: tomato;">
+        <strong>[Color Name 방식]</strong> 이 텍스트는 색상 키워드(tomato)로 스타일을 지정했습니다.
+    </p>
+
+    <!-- 16진수 색상 코드 (HEX Code) 사용 -->
+    <p style="color: #10b981;">
+        <strong>[HEX 코드 방식]</strong> 이 텍스트는 16진수 색상 코드(#10b981 - 에메랄드 초록)로 지정했습니다.
+    </p>
+
+    <!-- 빛의 삼원색 조합(RGB) 및 반투명도(RGBA) 사용 -->
+    <p style="color: rgb(79, 70, 229); background-color: rgba(79, 70, 229, 0.15);">
+        <strong>[RGB / RGBA 방식]</strong> 이 텍스트는 RGB 글자색과 RGBA 반투명 배경색(불투명도 15%)을 지정했습니다.
+    </p>
+
+    <hr>
+
+    <!-- [3. 다양한 폰트(Font) 제어 실습] -->
+    <h2>2. 폰트 제어 속성 (Font Styles)</h2>
+
+    <!-- 글꼴(font-family) 및 글자 크기(font-size) 지정 -->
+    <p style="font-family: 'Courier New', monospace; font-size: 20px;">
+        이 텍스트는 폰트 종류(Courier New, monospace)와 글자 크기(20px)를 변경했습니다.
+    </p>
+
+    <!-- 글 두께(font-weight) 지정 -->
+    <p style="font-weight: 900;">
+        이 텍스트는 글자 두께를 수치(900 - 매우 두꺼움)로 아주 두껍게 조절했습니다.
+    </p>
+
+    <!-- 텍스트 정렬(text-align) 및 줄간격(line-height) 지정 -->
+    <p style="text-align: right; line-height: 2.0; background-color: #f3f4f6;">
+        이 문단은 오른쪽 정렬(text-align: right) 상태입니다.<br>
+        줄 간격을 보통의 2배(line-height: 2.0)로 넓게 지정하여 가독성을 높였습니다.<br>
+        배경색을 부여해 줄 간격의 높이 변화를 명확히 확인해 볼 수 있습니다.
+    </p>
+</body>
+
+</html>
