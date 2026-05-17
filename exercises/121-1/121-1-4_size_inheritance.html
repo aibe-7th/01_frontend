@@ -13,6 +13,7 @@
         body {
             font-family: 'Pretendard', sans-serif;
             line-height: 1.6;
+            color: #374151;
         }
 
         /* 1. 상속성 테스트용 부모 영역 */
@@ -40,10 +41,42 @@
         .rem-box {
             font-size: 2rem; /* 루트 16px * 2 = 32px */
         }
+
+        /* 4. px: 절대 고정 크기 */
+        .px-box {
+            width: 150px;
+            height: 50px;
+            border: 2px solid #4b5563;
+            background-color: #e5e7eb;
+            text-align: center;
+        }
+
+        /* 5. %: 부모 너비 대비 상대 백분율 크기 */
+        .percent-parent {
+            width: 400px;
+            background-color: #f3f4f6;
+            border: 1px solid #d1d5db;
+            padding: 10px;
+        }
+
+        .percent-child {
+            width: 50%; /* 부모 너비 400px의 50% = 200px */
+            background-color: #fca5a5;
+            text-align: center;
+        }
+
+        /* 6. vw / vh: 브라우저 창(Viewport) 전체 영역 기준 상대 백분율 크기 */
+        .viewport-box {
+            width: 50vw; /* 브라우저 가로 폭의 50% */
+            height: 10vh; /* 브라우저 세로 높이의 10% */
+            background-color: #86efac;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-    <h1>4. CSS 속성의 상속(Inheritance) 및 크기 단위(em / rem) 실습</h1>
+    <h1>4. CSS 속성의 상속(Inheritance) 및 크기 단위(px / % / em / rem / vw / vh) 실습</h1>
+    <p>개발자 도구(F12 -> Elements -> Computed)를 열어 상속 관계와 각 박스의 실제 연산 크기를 검증해 보세요.</p>
     <hr>
 
     <h2>[실습 1] CSS 속성 상속 검증</h2>
@@ -59,13 +92,32 @@
 
     <hr>
 
-    <h2>[실습 2] em과 rem 단위 크기 측정</h2>
-    
+    <h2>[실습 2] 폰트 크기 단위 대조 (em vs rem)</h2>
     <div style="font-size: 20px; border: 1px dashed gray; padding: 10px;">
         부모 폰트 크기를 20px로 선언한 콘텐트 영역
         
         <p class="em-box">이곳은 1.5em입니다. (부모 20px * 1.5 = 30px)</p>
         <p class="rem-box">이곳은 2rem입니다. (Root 16px * 2 = 32px)</p>
+    </div>
+
+    <hr>
+
+    <h2>[실습 3] 레이아웃 및 뷰포트 크기 단위 대조 (px / % / vw / vh)</h2>
+    
+    <h3>1) px (절대 고정 단위)</h3>
+    <div class="px-box">150px x 50px</div>
+
+    <h3>2) % (부모 영역 대비 백분율 단위)</h3>
+    <div class="percent-parent">
+        부모 영역 (width: 400px;)
+        <br><br>
+        <div class="percent-child">자식 영역 (width: 50% = 200px)</div>
+    </div>
+
+    <h3>3) vw / vh (브라우저 화면 뷰포트 기준 단위)</h3>
+    <p>브라우저 창 크기를 가로/세로로 조절하면 아래 초록색 박스의 크기가 실시간으로 반응하여 늘어나거나 줄어듭니다.</p>
+    <div class="viewport-box">
+        가로 50vw x 세로 10vh
     </div>
 </body>
 </html>
