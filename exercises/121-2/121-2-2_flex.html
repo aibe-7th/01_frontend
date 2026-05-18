@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 레이아웃 실습 - Flex</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            margin: 20px 0 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        /* ----------------------------------------------------
+           Flex 공통 스타일 (Container & Item)
+           ---------------------------------------------------- */
+        
+        /* display: flex 선언으로 직계 자식들을 Flex 아이템으로 정렬 */
+        .flex-container {
+            display: flex; 
+            background-color: #f1f5f9;
+            border: 2px dashed #475569;
+            padding: 10px;
+            margin-bottom: 15px;
+            min-height: 100px;
+        }
+
+        /* Flex 자식 아이템 */
+        .flex-item {
+            background-color: royalblue;
+            color: white;
+            font-weight: bold;
+            padding: 15px 20px;
+            margin: 5px;
+            text-align: center;
+        }
+
+        /* ----------------------------------------------------
+           1. justify-content (주축 기준 정렬)
+           ---------------------------------------------------- */
+        
+        /* flex-start: 시작점 정렬 (기본값) */
+        .jc-start {
+            justify-content: flex-start;
+        }
+
+        /* flex-end: 끝점 정렬 */
+        .jc-end {
+            justify-content: flex-end;
+        }
+
+        /* center: 가운데 정렬 */
+        .jc-center {
+            justify-content: center;
+        }
+
+        /* space-between: 첫 아이템은 벽에 붙고 사이 여백 균등 분배 */
+        .jc-between {
+            justify-content: space-between;
+        }
+
+        /* space-around: 모든 아이템 양옆에 동일한 크기 여백 분배 */
+        .jc-around {
+            justify-content: space-around;
+        }
+
+        /* ----------------------------------------------------
+           2. align-items (교차축 기준 정렬)
+           ---------------------------------------------------- */
+        
+        /* 수직 정렬을 관찰하기 위해 부모 높이를 크게 잡음 */
+        .flex-container-cross {
+            display: flex;
+            background-color: #f1f5f9;
+            border: 2px dashed #475569;
+            padding: 10px;
+            margin-bottom: 20px;
+            height: 150px; 
+        }
+
+        /* stretch: 교차축 방향으로 꽉 차게 늘어남 (기본값) */
+        .ai-stretch {
+            align-items: stretch;
+        }
+
+        /* center: 교차축 기준 수직 중앙 정렬 */
+        .ai-center {
+            align-items: center;
+        }
+
+        /* flex-start: 시작점(상단) 정렬 */
+        .ai-start {
+            align-items: flex-start;
+        }
+
+        /* flex-end: 끝점(하단) 정렬 */
+        .ai-end {
+            align-items: flex-end;
+        }
+
+        /* 2차원 수직/수평 정중앙 정렬 (justify-content: center + align-items: center) */
+        .ai-perfect-center {
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Flex 레이아웃 실습</h1>
+        <p>1차원 공간 배치를 위해 사용되는 Flex의 주요 정렬 속성을 학습합니다.</p>
+    </header>
+
+    <hr>
+
+    <!-- 1. justify-content 실습 -->
+    <section>
+        <h2>1. Justify Content (주축 기준 정렬)</h2>
+        <p>주축 방향의 여백 공간을 활용해 자식을 분산 정렬합니다.</p>
+
+        <h3>1-1. flex-start (시작점 정렬)</h3>
+        <div class="flex-container jc-start">
+            <div class="flex-item">A</div><div class="flex-item">B</div><div class="flex-item">C</div>
+        </div>
+
+        <h3>1-2. flex-end (끝점 정렬)</h3>
+        <div class="flex-container jc-end">
+            <div class="flex-item">A</div><div class="flex-item">B</div><div class="flex-item">C</div>
+        </div>
+
+        <h3>1-3. center (가운데 정렬)</h3>
+        <div class="flex-container jc-center">
+            <div class="flex-item">A</div><div class="flex-item">B</div><div class="flex-item">C</div>
+        </div>
+
+        <h3>1-4. space-between (양 끝 밀착 후 사이 여백 균등 분배)</h3>
+        <div class="flex-container jc-between">
+            <div class="flex-item">A</div><div class="flex-item">B</div><div class="flex-item">C</div>
+        </div>
+
+        <h3>1-5. space-around (아이템 양옆 동등한 여백 분배)</h3>
+        <div class="flex-container jc-around">
+            <div class="flex-item">A</div><div class="flex-item">B</div><div class="flex-item">C</div>
+        </div>
+    </section>
+
+    <hr>
+
+    <!-- 2. align-items 실습 -->
+    <section>
+        <h2>2. Align Items (교차축 기준 정렬)</h2>
+        <p>주축과 수직인 교차축 상에서 자식들을 수직 정렬합니다.</p>
+
+        <h3>2-1. stretch (교차축 방향으로 꽉 차게 늘어남)</h3>
+        <div class="flex-container-cross ai-stretch">
+            <div class="flex-item">늘어남 1</div>
+            <div class="flex-item">늘어남 2</div>
+        </div>
+
+        <h3>2-2. center (교차축 기준 수직 중앙 정렬)</h3>
+        <p>부모 박스의 높이가 확보되어 있을 때, 자식들을 수직 방향 정중앙에 나란히 배치합니다.</p>
+        <div class="flex-container-cross ai-center">
+            <div class="flex-item">중앙 정렬 1</div>
+            <div class="flex-item">중앙 정렬 2</div>
+        </div>
+
+        <h3>2-3. flex-start (시작점 정렬) / flex-end (끝점 정렬)</h3>
+        <div class="flex-container-cross ai-start" style="margin-bottom: 10px;">
+            <div class="flex-item">상단 밀착 (start)</div>
+        </div>
+        <div class="flex-container-cross ai-end">
+            <div class="flex-item">하단 밀착 (end)</div>
+        </div>
+    </section>
+
+    <hr>
+
+    <!-- 3. 완벽한 중앙 정렬 (수평 + 수직) -->
+    <section>
+        <h2>3. 완벽한 중앙 정렬 (수평 + 수직 수직 중앙 정렬)</h2>
+        <p>
+            부모의 높이가 있을 때, <code>justify-content: center;</code>(가로 중앙)와 
+            <code>align-items: center;</code>(세로 중앙)를 동시에 적용하여 화면 한가운데에 배치하는 기법입니다.
+        </p>
+        <div class="flex-container-cross ai-perfect-center">
+            <div class="flex-item">정중앙 정렬</div>
+        </div>
+    </section>
+
+</body>
+</html>

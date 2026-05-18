@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 레이아웃 실습 - Float & Position</title>
+    <style>
+        /* 기본 여백 리셋 및 기본 폰트 설정 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            margin: 20px 0 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        /* ----------------------------------------------------
+           1. Float 실습 스타일
+           ---------------------------------------------------- */
+        
+        /* [부모 높이 상실 현상] 자식들이 float되면 부모는 높이를 인지하지 못해 빨간 테두리가 찌그러짐 */
+        .news-container-broken {
+            border: 3px dashed red;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* 이미지 역할을 하는 float 대상 자식 상자 */
+        .news-image {
+            width: 150px;
+            height: 120px;
+            background-color: royalblue;
+            color: white;
+            text-align: center;
+            line-height: 120px;
+            font-weight: bold;
+        }
+
+        /* 요소를 왼쪽에 띄우고 우측에 텍스트 흐름 허용 */
+        .float-left {
+            float: left;
+            margin-right: 15px;
+            margin-bottom: 5px;
+        }
+
+        /* 요소를 오른쪽에 띄우고 좌측에 텍스트 흐름 허용 */
+        .float-right {
+            float: right;
+            margin-left: 15px;
+            margin-bottom: 5px;
+        }
+
+        /* [해결책 1] 뒤에 오는 요소에 clear: both 적용하여 흐름 해제 */
+        .clear-box {
+            clear: both;
+        }
+
+        /* [해결책 2] 부모 요소에 overflow: hidden을 주어 자체 높이 계산 유도 */
+        .news-container-parent-fixed {
+            border: 3px solid green;
+            padding: 10px;
+            margin-bottom: 20px;
+            overflow: hidden; /* 격리 속성 부여 ★ */
+        }
+
+        /* ----------------------------------------------------
+           2. Position 실습 스타일
+           ---------------------------------------------------- */
+
+        /* absolute 자식의 기준점이 되어 줄 relative 부모 상자 */
+        .pos-playground {
+            background-color: #eee;
+            border: 2px solid #ccc;
+            height: 300px;
+            position: relative; /* absolute 기준점 선언 ★ */
+            margin-top: 10px;
+        }
+
+        .pos-box {
+            width: 100px;
+            height: 60px;
+            color: white;
+            text-align: center;
+            line-height: 60px;
+            font-weight: bold;
+        }
+
+        /* static: 기본 문서 흐름에 따라 순서대로 배치됨 */
+        .box-static {
+            background-color: gray;
+        }
+
+        /* relative: 자기 자신의 원래 자리를 기준으로 미세 이동 */
+        .box-relative {
+            background-color: green;
+            position: relative;
+            top: 20px;
+            left: 30px;
+        }
+
+        /* absolute: relative 조상(.pos-playground)을 기준으로 절대 배치 */
+        .box-absolute {
+            background-color: orange;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+
+        /* fixed: 브라우저 뷰포트를 기준으로 우측 하단에 고정 */
+        .box-fixed {
+            background-color: red;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            line-height: 80px;
+            cursor: pointer;
+            z-index: 9999;
+        }
+
+        /* sticky: 일반 흐름을 따르다가 상단 임계점(top: 10px)에 도달하면 fixed처럼 고정 */
+        .box-sticky {
+            background-color: purple;
+            position: sticky;
+            top: 10px;
+            width: 100%;
+            height: 40px;
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            margin: 15px 0;
+            z-index: 100;
+        }
+
+        /* ----------------------------------------------------
+           3. z-index 실습 스타일
+           ---------------------------------------------------- */
+        .z-stack-container {
+            position: relative;
+            height: 150px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+        }
+
+        .z-card {
+            position: absolute;
+            width: 120px;
+            height: 80px;
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+        }
+
+        /* z-index 숫자가 클수록 위로 쌓임 */
+        .z-card-1 {
+            background-color: hotpink;
+            top: 10px;
+            left: 10px;
+            z-index: 3;
+        }
+
+        .z-card-2 {
+            background-color: dodgerblue;
+            top: 30px;
+            left: 60px;
+            z-index: 2;
+        }
+
+        .z-card-3 {
+            background-color: teal;
+            top: 50px;
+            left: 110px;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Float & Position 실습</h1>
+        <p>Float와 Position 속성의 배치 규칙과 작동법을 직접 확인해 봅시다.</p>
+    </header>
+
+    <hr>
+
+    <!-- Float 섹션 -->
+    <section>
+        <h2>1. Float 실습</h2>
+        <p>Float는 요소를 띄워 텍스트가 자연스럽게 둘러싸도록(Wrap) 하는 속성입니다.</p>
+
+        <h3>1-1. 부모의 높이 상실 현상</h3>
+        <p>자식 박스들이 모두 float되면, 부모 박스(빨간 점선)는 높이를 잃어 찌그러집니다.</p>
+        <div class="news-container-broken">
+            <div class="news-image float-left">Left Image</div>
+            <div class="news-image float-right">Right Image</div>
+        </div>
+        <p style="clear: both; padding-top: 10px;">
+            ※ 문제 확인: 붕 뜬 자식들이 부모 영역 밖으로 튀어나와 텍스트 배치에 침범하고 있습니다.
+        </p>
+
+        <h3>1-2. 해결책 1: 뒤따르는 형제 요소에 clear: both 적용</h3>
+        <div class="news-container-broken">
+            <div class="news-image float-left">Left Image</div>
+            <!-- 뒤따르는 빈 박스 요소에 clear: both를 적용하여 흐름을 해제 -->
+            <div class="clear-box"></div>
+        </div>
+        <p>※ 빈 상자 요소에 clear: both를 주어 float의 흐름을 강제로 차단하고 다음 단락을 보호합니다.</p>
+
+        <h3>1-3. 해결책 2: 부모에게 격리 속성(overflow: hidden) 부여</h3>
+        <p>부모 박스에 격리 속성(overflow: hidden)을 주어 float된 자식의 높이를 자동으로 계산하도록 감싼 정상 레이아웃입니다.</p>
+        <div class="news-container-parent-fixed">
+            <div class="news-image float-left">NEWS IMAGE</div>
+            <p>
+                <strong>[기사 제목] Float 속성의 올바른 쓰임새</strong><br>
+                여기 본문 텍스트는 좌측 파란색 이미지 박스(.float-left) 주변을 밀어내지 않고 자연스럽게 둘러싸고 흘러갑니다. 
+                이것이 본래 신문 등에서 자주 사용되는 float의 정석적인 레이아웃입니다. 
+                부모 클래스에 격리 속성인 overflow: hidden을 주어 부모가 높이를 올바르게 인식하도록 하고 있습니다.
+            </p>
+        </div>
+    </section>
+
+    <hr>
+
+    <!-- Position 섹션 -->
+    <section>
+        <h2>2. Position 실습</h2>
+        <p>임의의 오프셋(top, left, bottom, right)을 지정해 요소를 수동 배치하는 속성입니다.</p>
+
+        <!-- Sticky 바 실습 -->
+        <div class="box-sticky">
+            ★ Sticky Bar (스크롤 시 브라우저 최상단에 닿으면 고정되어 따라옵니다)
+        </div>
+
+        <h3>2-1. 기준 상자 내의 오프셋 배치</h3>
+        <p>아래 회색 영역(.pos-playground)은 position: relative로 설정되어 있어 absolute 자식의 기준점이 됩니다.</p>
+        
+        <div class="pos-playground">
+            <!-- 1) static 박스 (기본 흐름) -->
+            <div class="pos-box box-static">static</div>
+
+            <!-- 2) relative 박스 (원래 있었어야 할 자기 자리 기준 이동) -->
+            <div class="pos-box box-relative">relative</div>
+
+            <!-- 3) absolute 박스 (relative 부모 기준 우하단 고정) -->
+            <div class="pos-box box-absolute">absolute</div>
+        </div>
+
+        <h3>2-2. z-index를 통한 겹침 순서 제어</h3>
+        <p>수치가 클수록 화면 최상단에 나타납니다. (단, position이 static이 아닌 요소에서만 작동)</p>
+        
+        <div class="z-stack-container">
+            <div class="z-card z-card-1">1번 (z-index: 3)</div>
+            <div class="z-card z-card-2">2번 (z-index: 2)</div>
+            <div class="z-card z-card-3">3번 (z-index: 1)</div>
+        </div>
+
+        <!-- Sticky 스크롤 작동 관찰을 위한 충분한 양의 스크롤 확보용 더미 텍스트 구역 -->
+        <div style="margin-top: 40px; border: 1px dashed #ccc; padding: 20px; background-color: #fafafa;">
+            <strong>[Sticky 스크롤 테스트용 콘텐츠 공간]</strong>
+            <p style="margin-top: 10px; font-weight: bold; color: #333;">아래로 휠을 내려보세요. 보라색 Sticky Bar가 브라우저 상단 천장 아래 10px에 착 달라붙은 채로 본 섹션의 바닥까지 계속 유지되는 것을 볼 수 있습니다.</p>
+            <p style="margin-top: 15px; color: #555;">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin sodales finibus. 
+                Nulla convallis erat ut convallis consequat. Suspendisse pulvinar magna vitae nibh consequat efficitur. 
+                Phasellus nec scelerisque ligula. In lacinia purus sit amet neque porta, sed luctus sapien dictum.
+            </p>
+            <p style="margin-top: 15px; color: #555;">
+                Curabitur vel nisl nec eros luctus sodales. Pellentesque volutpat tortor nec magna convallis, et vestibulum nisl pharetra. 
+                Nam sollicitudin erat risus, ac tincidunt purus scelerisque quis. Etiam quis nunc nisl. 
+                Pellentesque convallis mi at mauris sodales pretium.
+            </p>
+            <p style="margin-top: 15px; color: #555;">
+                Donec vel nunc interdum, elementum sem a, egestas elit. Duis sit amet ipsum eu neque rhoncus eleifend sodales ut ex. 
+                Pellentesque convallis elit in erat laoreet, et placerat nisi tristique. Vestibulum scelerisque felis eget lectus facilisis.
+            </p>
+            <p style="margin-top: 15px; color: #555;">
+                Sed pretium purus risus, a eleifend ipsum feugiat id. Curabitur convallis leo ac feugiat luctus. 
+                Aenean lobortis sollicitudin erat eget viverra. Etiam ut porta massa. 
+                Proin pellentesque sapien sed tellus convallis, nec porttitor ligula porttitor.
+            </p>
+        </div>
+    </section>
+
+    <!-- 4) fixed 박스 (화면 우측 하단 박제) -->
+    <div class="box-fixed" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+        Top ▲
+    </div>
+
+</body>
+</html>

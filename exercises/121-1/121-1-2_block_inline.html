@@ -48,6 +48,35 @@
         .v-hidden {
             visibility: hidden;
         }
+
+        /* 5. 시맨틱 블록 태그: div와 물리적으로 동일하게 크기와 마진이 작동하는 Block 요소 */
+        header, nav, main, footer {
+            border: 2px solid #4b5563;
+            margin: 10px 0;
+            padding: 15px;
+            font-weight: bold;
+        }
+
+        header {
+            background-color: #e0f2fe; /* 하늘색 */
+            color: #0369a1;
+        }
+
+        nav {
+            background-color: #fef3c7; /* 연황색 */
+            color: #b45309;
+        }
+
+        main {
+            background-color: #d1fae5; /* 연두색 */
+            color: #047857;
+            min-height: 100px;
+        }
+
+        footer {
+            background-color: #f3f4f6; /* 회색 */
+            color: #4b5563;
+        }
     </style>
 </head>
 <body>
@@ -81,5 +110,30 @@
     <div class="display-box">박스 1</div>
     <div class="display-box v-hidden">박스 2</div>
     <div class="display-box">박스 3</div>
+
+    <hr>
+
+    <h2>[실습 3] 시맨틱 블록 태그 레이아웃 실습</h2>
+    <p>아래 사용된 header, nav, main, footer 태그는 div와 물리적인 작동 방식(Block 요소)이 완전히 동일하지만, 문서의 구조와 구조적 역할의 의미를 내포한 시맨틱 태그입니다.</p>
+
+    <header>
+        &lt;header&gt; 영역 (로고 및 사이트 대제목)
+    </header>
+
+    <nav>
+        &lt;nav&gt; 영역 (네비게이션: 홈 | 소개 | 게시판 | 연락처)
+    </nav>
+
+    <main>
+        &lt;main&gt; 본문 핵심 콘텐츠 영역
+        <p style="margin-top: 10px; font-weight: normal; font-size: 0.95rem;">
+            시맨틱 블록 태그들은 레이아웃 상에서 일반 div와 똑같이 가로/세로(width/height) 크기 설정이 가능하고, 
+            상하좌우 margin, padding 등 모든 박스 모델 레이아웃 속성이 사방으로 자유롭게 작동하는 <strong>대표적인 Block 요소</strong>입니다.
+        </p>
+    </main>
+
+    <footer>
+        &lt;footer&gt; 영역 (Copyright 2026. All rights reserved. 주소 및 연락처 표시)
+    </footer>
 </body>
 </html>
