@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS 입문 - 개발자 도구 콘솔과 주석 실습</title>
+    <style>
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            background-color: #f9fafb;
+            color: #1f2937;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        h1 {
+            color: #111827;
+            font-size: 1.8rem;
+            border-bottom: 2px solid #f3f4f6;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+        h3 {
+            color: #2563eb;
+            margin-top: 25px;
+        }
+        ol {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        code {
+            background-color: #f3f4f6;
+            color: #ef4444;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 0.9em;
+        }
+        .alert {
+            background-color: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            color: #1e40af;
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>1. 개발자 도구 콘솔 & 주석 실습</h1>
+        <p>웹 브라우저의 개발자 도구를 활용하여 코드가 출력되는 경로를 파악하고, 주석 기호로 코드를 제어해 봅시다.</p>
+        
+        <div class="alert">
+            <strong>💡 실습 준비 단계:</strong><br>
+            브라우저 화면에서 <code>F12</code> 키(macOS는 <code>Cmd + Option + I</code>)를 누른 뒤, 상단 메뉴에서 <strong>[Console]</strong> 탭을 클릭하여 대기하세요.
+        </div>
+
+        <h3>[미션 1] console.log() 콘솔창 출력</h3>
+        <p>이 HTML 파일 내부의 <code>&lt;script&gt;</code> 태그 안에 아래 코드가 담겨 있습니다. 콘솔창에 데이터가 올바르게 들어왔는지 확인해 보세요.</p>
+        
+        <h3>[미션 2] 주석 활용하여 비활성화하기</h3>
+        <ol>
+            <li>아래 스크립트 소스의 주석 기호를 조작해 봅시다.</li>
+            <li><code>console.log("이 문구는 콘솔에 보이지 않아야 합니다.");</code> 코드 왼쪽에 <code>//</code> 기호를 붙여 한 줄 주석 처리해 보세요.</li>
+            <li>여러 줄 주석 기호인 <code>/* */</code>를 활용해 특정 구문을 통째로 비활성화해 보세요.</li>
+        </ol>
+    </div>
+
+    <!-- 실습 스크립트 -->
+    <script>
+        // ==========================================
+        // [미션 1] 아래 코드들의 출력 결과를 콘솔에서 확인하세요.
+        // ==========================================
+        console.log("안녕하세요! 자바스크립트 첫 콘솔 출력입니다.");
+        console.log(2026 + 100); // 숫자 연산값 출력
+        console.log(true); // 논리값(Boolean) 출력
+
+        // ==========================================
+        // [미션 2] 아래 코드를 '한 줄 주석' 기호를 사용해 비활성화해 보세요.
+        // ==========================================
+        console.log("이 문구는 콘솔에 보이지 않아야 합니다.");
+
+        // ==========================================
+        // [미션 2] 아래 여러 줄의 코드를 '여러 줄 주석' 기호로 통째로 감싸보세요.
+        // ==========================================
+        console.log("블록 주석 테스트 1");
+        console.log("블록 주석 테스트 2");
+        console.log("블록 주석 테스트 3");
+    </script>
+</body>
+</html>

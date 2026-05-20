@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS 입문 - 인라인 및 외장 스크립트 로드 실습</title>
+    <style>
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            background-color: #f9fafb;
+            color: #1f2937;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        h1 {
+            color: #111827;
+            font-size: 1.8rem;
+            border-bottom: 2px solid #f3f4f6;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+        h3 {
+            color: #2563eb;
+            margin-top: 25px;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        code {
+            background-color: #f3f4f6;
+            color: #ef4444;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 0.9em;
+        }
+        .step {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>2. 인라인 및 외장 스크립트 (&lt;script&gt;) 실습</h1>
+        <p>HTML에 자바스크립트를 포함시키는 두 가지 핵심 방식의 작동 원리를 체득합시다.</p>
+
+        <div class="step">
+            <h3>방식 1) 인라인 스크립트 (Inline Script)</h3>
+            <p>HTML 파일 내부 <code>&lt;body&gt;</code> 하단부 <code>&lt;script&gt;</code> 태그 내에 직접 자바스크립트 문장을 삽입하여 구동하는 환경입니다.</p>
+        </div>
+
+        <div class="step">
+            <h3>방식 2) 외장 파일 스크립트 (External Script)</h3>
+            <p>프로젝트 규모가 커질 때 유지보수를 위해 자바스크립트 전용 파일(<code>.js</code>)을 따로 개설하고 링크하여 로딩하는 실무 표준 환경입니다.</p>
+            <p><strong>미션:</strong> 이 HTML 파일과 동일한 경로 상에 있는 <code>141-1-2_app.js</code> 파일을 열어 메시지를 확인하고, 아래 주석 처리되어 있는 외장 스크립트 코드를 해제해 콘솔 로그를 활성화해 보세요.</p>
+        </div>
+    </div>
+
+    <!-- 1. 인라인 스크립트 테스트 -->
+    <script>
+        console.log("인라인 스크립트 로드 성공!");
+    </script>
+
+    <!-- 2. 외장 파일 로드 테스트 (아래 주석을 해제하여 사용해 보세요) -->
+    <!-- <script src="141-1-2_app.js"></script> -->
+</body>
+</html>
