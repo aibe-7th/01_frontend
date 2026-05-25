@@ -2,17 +2,9 @@
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white) ![CSS](https://img.shields.io/badge/CSS-663399?style=flat-square&logo=css&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=000000) ![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white) ![Markdown](https://img.shields.io/badge/Markdown-000000?style=flat-square&logo=markdown&logoColor=white)
 
-프론트엔드 입문 과정의 강의 슬라이드와 실습 예제를 차시별로 정리한 저장소입니다.
-
-HTML, CSS, Git, JavaScript 입문 내용을 차시별 슬라이드와 실습 코드로 정리합니다.
-
-## 구성
-
-```text
-.
-├── slides/      # 강의 슬라이드 PDF
-└── exercises/   # 실습 예제 코드
-```
+- 프론트엔드 입문 과정 자료
+- 차시별 강의 슬라이드와 실습 예제
+- HTML, CSS, Git, JavaScript 중심
 
 ## 바로가기
 
@@ -115,5 +107,3 @@ HTML, CSS, Git, JavaScript 입문 내용을 차시별 슬라이드와 실습 코
 
 - `slides/{차시코드 앞 2자리}`: 해당 분류의 강의 자료
 - `exercises/{차시코드 앞 2자리}/{차시코드}`: 해당 차시의 실습 코드
-
-예시는 학습 흐름에 맞춰 번호순으로 확인하면 됩니다.
