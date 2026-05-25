@@ -1,8 +1,10 @@
-# 01_frontend
+# 프론트엔드 기초 학습 자료
 
-프론트엔드 기초 학습 자료와 실습 예제를 모아둔 저장소입니다.
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white) ![CSS](https://img.shields.io/badge/CSS-663399?style=flat-square&logo=css&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=000000) ![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white) ![Markdown](https://img.shields.io/badge/Markdown-000000?style=flat-square&logo=markdown&logoColor=white)
 
-HTML, CSS, Git, JavaScript 입문 내용을 주차별 슬라이드와 실습 코드로 정리합니다.
+프론트엔드 입문 과정의 강의 슬라이드와 실습 예제를 차시별로 정리한 저장소입니다.
+
+HTML, CSS, Git, JavaScript 입문 내용을 차시별 슬라이드와 실습 코드로 정리합니다.
 
 ## 구성
 
