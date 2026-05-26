@@ -103,6 +103,20 @@
 
 </details>
 
+<details>
+<summary>15. AI 에이전트와 환경 설정</summary>
+
+<br>
+
+![AI](https://img.shields.io/badge/AI-412991?style=flat-square) ![OpenCode](https://img.shields.io/badge/OpenCode-000000?style=flat-square) ![NVIDIA](https://img.shields.io/badge/NVIDIA-76B900?style=flat-square&logo=nvidia&logoColor=white)
+
+| 차시 | 주제 | 슬라이드 | 실습 |
+| --- | --- | --- | --- |
+| 151-1 | Agentic Coding Environment | [PDF](<slides/15/151-1_Agentic Coding Environment.pdf>) | - |
+| 151-2 | Harness Engineering | [PDF](<slides/15/151-2_Harness Engineering.pdf>) | - |
+
+</details>
+
 ## 폴더 규칙
 
 - `slides/{차시코드 앞 2자리}`: 해당 분류의 강의 자료
