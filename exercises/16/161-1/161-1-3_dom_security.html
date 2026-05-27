@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM 실습 3: textContent vs innerHTML 보안</title>
+  <!-- Bootstrap 5 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+  <header class="container my-5 text-center">
+    <h1 class="fw-bold text-danger">DOM 실습 3: textContent vs innerHTML 보안</h1>
+    <p class="text-muted">사용자 입력 텍스트를 주입할 때 발생하는 DOM-Based XSS 보안 취약점의 실체를 실습합니다.</p>
+  </header>
+
+  <main class="container" style="max-width: 600px;">
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <h5 class="card-title fw-bold text-secondary mb-3">🛡️ DOM Security Sandbox</h5>
+        <p class="text-muted small">공격 텍스트를 각 출력 영역에 대입하여 스크립트 실행 공격이 발생하는지 테스트합니다.</p>
+
+        <!-- Threat Input Field -->
+        <div class="mb-3">
+          <label for="xss-input" class="form-label fw-semibold text-secondary small">공격 스크립트 입력창:</label>
+          <input type="text" id="xss-input" class="form-control" value="<img src='x' onerror='alert(\&quot;DOM-Based XSS 공격 성공!\&quot;)'>">
+        </div>
+
+        <div class="d-flex gap-2 mb-4">
+          <button id="btn-safe" class="btn btn-success flex-fill">🛡️ textContent 주입 (안전)</button>
+          <button id="btn-unsafe" class="btn btn-danger class flex-fill">⚠️ innerHTML 주입 (위험)</button>
+        </div>
+
+        <!-- Safe rendering container -->
+        <div class="mb-3">
+          <span class="badge bg-success mb-2">Safe Area (textContent)</span>
+          <div id="safe-output" class="p-3 bg-white border border-success rounded text-success" style="min-height: 50px; font-size: 0.9rem;">
+            // 여기에 주입됩니다.
+          </div>
+        </div>
+
+        <!-- Unsafe rendering container -->
+        <div>
+          <span class="badge bg-danger mb-2">Unsafe Area (innerHTML)</span>
+          <div id="unsafe-output" class="p-3 bg-white border border-danger rounded text-danger" style="min-height: 50px; font-size: 0.9rem;">
+            // 여기에 주입됩니다.
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // 🔗 관련 교안: [[161-1_DOM.md]]
+
+    const xssInput = document.querySelector('#xss-input');
+    const btnSafe = document.querySelector('#btn-safe');
+    const btnUnsafe = document.querySelector('#btn-unsafe');
+    const safeOutput = document.querySelector('#safe-output');
+    const unsafeOutput = document.querySelector('#unsafe-output');
+
+    // 1) 안전한 textContent 주입
+    btnSafe.addEventListener('click', () => {
+      const payload = xssInput.value;
+
+      // TODO 1-1: textContent 속성을 이용하여 safeOutput 영역에 payload 문자열을 주입하세요.
+      safeOutput.textContent = payload;
+      // 결과 확인: HTML 마크업 태그가 파싱되지 않고 그대로 텍스트 형태로 이스케이프되어 렌더링되므로 안전합니다.
+    });
+
+    // 2) 위험한 innerHTML 주입 (DOM-Based XSS 위협 노출)
+    btnUnsafe.addEventListener('click', () => {
+      const payload = xssInput.value;
+
+      // TODO 2-1: innerHTML 속성을 이용하여 unsafeOutput 영역에 payload 문자열을 주입하세요.
+      unsafeOutput.innerHTML = payload;
+      // 결과 확인: 브라우저가 태그를 실제 HTML 및 DOM 노드로 해석하여, onerror 이벤트 내의 악성 자바스크립트 스크립트를 즉각 자동 실행시킵니다.
+    });
+  </script>
+</body>
+</html>

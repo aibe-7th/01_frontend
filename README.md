@@ -13,7 +13,7 @@
 | 전체 슬라이드 | [slides/](slides/) |
 | 전체 실습 | [exercises/](exercises/) |
 | HTML/CSS 실습 | [exercises/11/](exercises/11/), [exercises/12/](exercises/12/) |
-| JavaScript 실습 | [exercises/14/](exercises/14/) |
+| JavaScript 실습 | [exercises/14/](exercises/14/), [exercises/16/](exercises/16/) |
 
 ## 학습 자료
 
@@ -114,6 +114,19 @@
 | --- | --- | --- | --- |
 | 151-1 | Agentic Coding Environment | [PDF](<slides/15/151-1_Agentic Coding Environment.pdf>) | - |
 | 151-2 | Harness Engineering | [PDF](<slides/15/151-2_Harness Engineering.pdf>) | - |
+
+</details>
+
+<details>
+<summary>16. DOM</summary>
+
+<br>
+
+![DOM](https://img.shields.io/badge/DOM-3F51B5?style=flat-square) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=000000)
+
+| 차시 | 주제 | 슬라이드 | 실습 |
+| --- | --- | --- | --- |
+| 161-1 | Document Object Model | [PDF](<slides/16/161-1_Document Object Model.pdf>) | [exercises/16/161-1/](exercises/16/161-1/) |
 
 </details>
 
