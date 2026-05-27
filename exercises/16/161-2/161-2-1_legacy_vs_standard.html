@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event 실습 1: Legacy vs Standard addEventListener</title>
+  <!-- Bootstrap 5 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .console-box {
+      background-color: #212529;
+      color: #34d399;
+      font-family: monospace;
+      font-size: 0.85rem;
+      border-radius: 6px;
+      padding: 15px;
+      min-height: 120px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+  <header class="container my-5 text-center">
+    <h1 class="fw-bold text-primary">Event 실습 1: Legacy vs Standard</h1>
+    <p class="text-muted">레거시 단일 바인딩과 현대 표준인 addEventListener의 다중 리스너 중첩 동작의 차이를 비교합니다.</p>
+  </header>
+
+  <main class="container" style="max-width: 650px;">
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        
+        <!-- Button with legacy inline binding (for demo only) -->
+        <h5 class="card-title fw-bold text-secondary mb-3">1) Legacy 방식 테스트</h5>
+        <div class="row g-2 mb-4">
+          <div class="col-6">
+            <!-- Inline click handler -->
+            <button onclick="alert('HTML 인라인 바인딩 작동!')" class="btn btn-outline-danger w-100">HTML 인라인 클릭</button>
+          </div>
+          <div class="col-6">
+            <button id="btn-legacy-prop" class="btn btn-danger w-100">DOM 프로퍼티 클릭</button>
+          </div>
+        </div>
+
+        <!-- Button with standard addEventListener -->
+        <h5 class="card-title fw-bold text-primary mb-3">2) Modern Standard 방식 테스트</h5>
+        <div class="mb-4">
+          <button id="btn-standard" class="btn btn-primary w-100">addEventListener 다중 바인딩 클릭</button>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="form-label fw-bold text-secondary m-0">📜 Event Console Log:</label>
+          <button id="btn-clear" class="btn btn-sm btn-link text-decoration-none p-0">초기화</button>
+        </div>
+        <div class="console-box" id="console-output">// 테스트 이벤트를 클릭하여 동작 결과를 감시하세요.</div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // 🔗 관련 교안: [[161-2_Event.md]]
+
+    const btnLegacyProp = document.querySelector('#btn-legacy-prop');
+    const btnStandard = document.querySelector('#btn-standard');
+    const consoleOutput = document.querySelector('#console-output');
+    const btnClear = document.querySelector('#btn-clear');
+
+    function printLog(message) {
+      if (consoleOutput.textContent.startsWith('//')) {
+        consoleOutput.textContent = '';
+      }
+      consoleOutput.textContent += message + '\n';
+    }
+
+    btnClear.addEventListener('click', () => {
+      consoleOutput.textContent = '// 콘솔 로그 초기화됨';
+    });
+
+    // ==========================================
+    // [미션 1] Legacy DOM 프로퍼티 덮어쓰기 문제 실습
+    // ==========================================
+    // TODO 1-1: btnLegacyProp에 첫 번째 click 콜백을 프로퍼티에 연결하세요.
+    btnLegacyProp.onclick = () => {
+      printLog('❌ [A] 클릭 동작 1호 실행 (이 로그는 덮어쓰여 표시되지 않아야 함)');
+    };
+
+    // TODO 1-2: 동일한 btnLegacyProp 객체의 onclick 프로퍼티에 다른 동작을 연결하여, 이전 동작이 소멸하는 것을 유도하세요.
+    btnLegacyProp.onclick = () => {
+      printLog('👉 [B] 클릭 동작 2호 실행 (프로퍼티 덮어쓰기로 인해 이 핸들러만 구동됨)');
+    };
+
+
+    // ==========================================
+    // [미션 2] Modern addEventListener 다중 리스너 실습
+    // ==========================================
+    // TODO 2-1: addEventListener API를 사용해 btnStandard에 첫 번째 'click' 리스너를 등록하세요.
+    btnStandard.addEventListener('click', () => {
+      printLog('✨ [표준 1] 첫 번째 이벤트 핸들러 작동!');
+    });
+
+    // TODO 2-2: 동일한 btnStandard 객체에 addEventListener를 한 번 더 호출해 두 번째 'click' 리스너를 중복 결합하고, 동시에 정상 순차 실행되는지 관측하세요.
+    btnStandard.addEventListener('click', (event) => {
+      printLog(`✨ [표준 2] 두 번째 이벤트 핸들러 작동! (타겟 태그: <${event.target.tagName.toLowerCase()}>)`);
+    });
+  </script>
+</body>
+</html>

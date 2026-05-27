@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BOM 실습 1: window, timer, dialog</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .console-box {
+      min-height: 160px;
+      background-color: #212529;
+      color: #d1e7dd;
+      border-radius: 6px;
+      padding: 14px;
+      font-family: monospace;
+      font-size: 0.9rem;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body class="bg-light">
+  <header class="container my-5 text-center">
+    <h1 class="fw-bold text-primary">BOM 실습 1: window, timer, dialog</h1>
+    <p class="text-muted">브라우저 전역 객체, 뷰포트 정보, 타이머, 기본 대화창을 확인합니다.</p>
+  </header>
+
+  <main class="container mb-5" style="max-width: 720px;">
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <h5 class="card-title fw-bold text-secondary mb-3">window 정보</h5>
+        <div class="row g-3 mb-4">
+          <div class="col-md-6">
+            <div class="p-3 bg-white border rounded">
+              <div class="small text-muted">window.innerWidth</div>
+              <div id="width-output" class="fs-4 fw-bold">-</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="p-3 bg-white border rounded">
+              <div class="small text-muted">window.innerHeight</div>
+              <div id="height-output" class="fs-4 fw-bold">-</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex mb-4">
+          <button id="btn-read-window" class="btn btn-primary">window 정보 읽기</button>
+          <button id="btn-timeout" class="btn btn-outline-primary">1초 뒤 실행</button>
+          <button id="btn-interval" class="btn btn-outline-success">반복 시작</button>
+          <button id="btn-stop" class="btn btn-outline-danger">반복 중단</button>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex mb-4">
+          <button id="btn-alert" class="btn btn-secondary">alert</button>
+          <button id="btn-confirm" class="btn btn-secondary">confirm</button>
+          <button id="btn-prompt" class="btn btn-secondary">prompt</button>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="form-label fw-bold text-secondary m-0">동작 로그</label>
+          <button id="btn-clear" class="btn btn-sm btn-link text-decoration-none p-0">초기화</button>
+        </div>
+        <div id="console-output" class="console-box">// BOM 동작 로그</div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // 관련 교안: 01_slide/16/162-BOM.md
+
+    const widthOutput = document.querySelector('#width-output');
+    const heightOutput = document.querySelector('#height-output');
+    const consoleOutput = document.querySelector('#console-output');
+
+    const btnReadWindow = document.querySelector('#btn-read-window');
+    const btnTimeout = document.querySelector('#btn-timeout');
+    const btnInterval = document.querySelector('#btn-interval');
+    const btnStop = document.querySelector('#btn-stop');
+    const btnAlert = document.querySelector('#btn-alert');
+    const btnConfirm = document.querySelector('#btn-confirm');
+    const btnPrompt = document.querySelector('#btn-prompt');
+    const btnClear = document.querySelector('#btn-clear');
+
+    let intervalId = null;
+    let intervalCount = 0;
+
+    function log(message) {
+      if (consoleOutput.textContent.startsWith('//')) {
+        consoleOutput.textContent = '';
+      }
+      consoleOutput.textContent += message + '\n';
+      consoleOutput.scrollTop = consoleOutput.scrollHeight;
+    }
+
+    function renderWindowSize() {
+      // TODO 1-1: window.innerWidth와 window.innerHeight를 화면에 출력하세요.
+      widthOutput.textContent = window.innerWidth;
+      heightOutput.textContent = window.innerHeight;
+      log(`[window] viewport = ${window.innerWidth} x ${window.innerHeight}`);
+    }
+
+    btnReadWindow.addEventListener('click', () => {
+      renderWindowSize();
+      log(`[관계 확인] window.document === document -> ${window.document === document}`);
+      log(`[관계 확인] window.location === location -> ${window.location === location}`);
+    });
+
+    window.addEventListener('resize', () => {
+      renderWindowSize();
+    });
+
+    btnTimeout.addEventListener('click', () => {
+      log('[setTimeout] 1초 뒤 실행 예약');
+
+      // TODO 2-1: setTimeout으로 1초 뒤 로그를 출력하세요.
+      setTimeout(() => {
+        log('[setTimeout] 1초 경과 후 콜백 실행');
+      }, 1000);
+    });
+
+    btnInterval.addEventListener('click', () => {
+      if (intervalId !== null) {
+        log('[setInterval] 이미 반복 실행 중');
+        return;
+      }
+
+      intervalCount = 0;
+      log('[setInterval] 반복 실행 시작');
+
+      // TODO 2-2: setInterval로 1초마다 카운트를 증가시키세요.
+      intervalId = setInterval(() => {
+        intervalCount += 1;
+        log(`[setInterval] ${intervalCount}회 실행`);
+      }, 1000);
+    });
+
+    btnStop.addEventListener('click', () => {
+      if (intervalId === null) {
+        log('[clearInterval] 중단할 반복 실행 없음');
+        return;
+      }
+
+      // TODO 2-3: clearInterval로 반복 실행을 중단하세요.
+      clearInterval(intervalId);
+      intervalId = null;
+      log('[clearInterval] 반복 실행 중단');
+    });
+
+    btnAlert.addEventListener('click', () => {
+      alert('alert: 단순 안내창입니다.');
+      log('[alert] 안내창 출력 완료');
+    });
+
+    btnConfirm.addEventListener('click', () => {
+      const result = confirm('confirm: 확인을 누르면 true, 취소를 누르면 false입니다.');
+      log(`[confirm] 반환값: ${result}`);
+    });
+
+    btnPrompt.addEventListener('click', () => {
+      const result = prompt('prompt: 이름을 입력하세요.', 'guest');
+      log(`[prompt] 반환값: ${result}`);
+    });
+
+    btnClear.addEventListener('click', () => {
+      consoleOutput.textContent = '// BOM 동작 로그';
+    });
+
+    renderWindowSize();
+  </script>
+</body>
+</html>
