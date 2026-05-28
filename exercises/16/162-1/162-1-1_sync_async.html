@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>비동기 실습 1: 동기 vs 비동기</title>
+  <!-- Bootstrap 5 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    #log-monitor {
+      height: 200px;
+      background-color: #212529;
+      color: #0dfd0d;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      overflow-y: auto;
+      border-radius: 6px;
+      padding: 15px;
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+  <header class="container my-5 text-center">
+    <h1 class="fw-bold text-primary">비동기 실습 1: 동기 vs 비동기</h1>
+    <p class="text-muted">동기식 블로킹(Blocking)과 비동기식 논블로킹(Non-blocking)의 실제 실행 흐름 비교</p>
+  </header>
+
+  <main class="container" style="max-width: 600px;">
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <h5 class="card-title fw-bold text-secondary mb-3">⚙️ 실행 제어</h5>
+        
+        <div class="row g-2 mb-3">
+          <div class="col-6">
+            <button id="btn-sync" class="btn btn-danger w-100 py-2">동기식 실행 (Sync)</button>
+          </div>
+          <div class="col-6">
+            <button id="btn-async" class="btn btn-success w-100 py-2">비동기식 실행 (Async)</button>
+          </div>
+        </div>
+
+        <button id="btn-clear" class="btn btn-outline-secondary btn-sm w-100">로그 초기화</button>
+      </div>
+    </div>
+
+    <!-- 실시간 로그 모니터 -->
+    <div class="card shadow-sm">
+      <div class="card-header bg-dark text-white fw-bold">🖥️ 실시간 로그 모니터 (Live Monitor)</div>
+      <div class="card-body bg-dark p-2">
+        <div id="log-monitor"></div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // 🔗 관련 교안: [[162-1_Callback.md]]
+
+    const btnSync = document.querySelector('#btn-sync');
+    const btnAsync = document.querySelector('#btn-async');
+    const btnClear = document.querySelector('#btn-clear');
+    const logMonitor = document.querySelector('#log-monitor');
+
+    // 🖥️ 화면에 실시간 로그 출력 함수
+    function log(message) {
+      console.log(message);
+      const line = document.createElement('div');
+      line.className = 'mb-1';
+      line.textContent = `> ${message}`;
+      logMonitor.appendChild(line);
+      logMonitor.scrollTop = logMonitor.scrollHeight;
+    }
+
+    btnClear.addEventListener('click', () => {
+      logMonitor.innerHTML = '';
+    });
+
+    // 1. 동기식 블로킹 실행
+    btnSync.addEventListener('click', () => {
+      log('[동기] A 작업 시작');
+
+      // 2초간 의도적인 CPU 점유 (블로킹 연산)
+      const startTime = Date.now();
+      while (Date.now() - startTime < 2000) {
+        // 동기식 지연 대기
+      }
+
+      log('[동기] A 작업 완료 (2초 경과)');
+      log('[동기] B 작업 완료 (대기 후 순차 실행)');
+      log('-----------------------------------');
+    });
+
+    // 2. 비동기식 논블로킹 실행
+    btnAsync.addEventListener('click', () => {
+      log('[비동기] A 작업 비동기 위임');
+
+      // 2초 뒤 백그라운드에서 실행 예약 (논블로킹)
+      setTimeout(() => {
+        log('[비동기] A 작업 완료 (2초 뒤 백그라운드 호출됨)');
+        log('-----------------------------------');
+      }, 2000);
+
+      log('[비동기] B 작업 즉시 완료 (대기 없이 실행됨)');
+    });
+  </script>
+</body>
+</html>

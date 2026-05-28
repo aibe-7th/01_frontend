@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>비동기 실습 4: 이벤트 루프와 setTimeout(fn, 0)</title>
+  <!-- Bootstrap 5 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    #log-monitor {
+      height: 250px;
+      background-color: #212529;
+      color: #0dfd0d;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      overflow-y: auto;
+      border-radius: 6px;
+      padding: 15px;
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+  <header class="container my-5 text-center">
+    <h1 class="fw-bold text-primary">비동기 실습 4: 이벤트 루프와 setTimeout(fn, 0)</h1>
+    <p class="text-muted">0ms 타이머의 대기열 등록 메커니즘 및 호출 스택(Call Stack) 비우기 증명</p>
+  </header>
+
+  <main class="container" style="max-width: 600px;">
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <h5 class="card-title fw-bold text-secondary mb-3">⚙️ 비동기 예약 실행</h5>
+        
+        <button id="btn-run" class="btn btn-primary w-100 py-2 mb-2">setTimeout(fn, 0) 실행하기</button>
+        <button id="btn-clear" class="btn btn-outline-secondary btn-sm w-100">로그 초기화</button>
+      </div>
+    </div>
+
+    <!-- 실시간 로그 모니터 -->
+    <div class="card shadow-sm">
+      <div class="card-header bg-dark text-white fw-bold">🖥️ 실시간 로그 모니터 (Live Monitor)</div>
+      <div class="card-body bg-dark p-2">
+        <div id="log-monitor"></div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // 🔗 관련 교안: [[162-1_Callback.md]]
+
+    const btnRun = document.querySelector('#btn-run');
+    const btnClear = document.querySelector('#btn-clear');
+    const logMonitor = document.querySelector('#log-monitor');
+
+    function log(message) {
+      console.log(message);
+      const line = document.createElement('div');
+      line.className = 'mb-1';
+      line.textContent = `> ${message}`;
+      logMonitor.appendChild(line);
+      logMonitor.scrollTop = logMonitor.scrollHeight;
+    }
+
+    btnClear.addEventListener('click', () => {
+      logMonitor.innerHTML = '';
+    });
+
+    btnRun.addEventListener('click', () => {
+      log('--- [1] 클릭 이벤트 콜백 시작 ---');
+      log('1. Call Stack: 동기 코드 시작');
+
+      // 0ms 타이머 등록 (실제 런타임 최소 대기 시간 적용)
+      setTimeout(() => {
+        log('2. Callback Queue -> Call Stack: setTimeout(fn, 0) 타이머 콜백 작동 완료!');
+      }, 0);
+
+      log('3. Call Stack: 동기 코드 끝');
+      log('--- [1] 클릭 이벤트 콜백 종료 (Call Stack 비어짐) ---');
+      log(' ');
+    });
+  </script>
+</body>
+</html>

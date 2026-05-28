@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>비동기 실습 3: Timer API 제어</title>
+  <!-- Bootstrap 5 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    #log-monitor {
+      height: 200px;
+      background-color: #212529;
+      color: #0dfd0d;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      overflow-y: auto;
+      border-radius: 6px;
+      padding: 15px;
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+  <header class="container my-5 text-center">
+    <h1 class="fw-bold text-primary">비동기 실습 3: Timer API 제어</h1>
+    <p class="text-muted">setTimeout, clearTimeout, setInterval, clearInterval의 올바른 사용 및 예약 해제</p>
+  </header>
+
+  <main class="container" style="max-width: 600px;">
+    
+    <!-- 1. setTimeout 제어 카드 -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <h5 class="card-title fw-bold text-secondary mb-3">⏱️ 단발성 타이머 (setTimeout)</h5>
+        <div class="row g-2">
+          <div class="col-6">
+            <button id="btn-timeout-start" class="btn btn-primary w-100">2초 타이머 시작</button>
+          </div>
+          <div class="col-6">
+            <button id="btn-timeout-cancel" class="btn btn-outline-danger w-100">타이머 즉시 해제</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. setInterval 제어 카드 -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <h5 class="card-title fw-bold text-secondary mb-3">🔄 반복 타이머 (setInterval)</h5>
+        <div class="row g-2">
+          <div class="col-6">
+            <button id="btn-interval-start" class="btn btn-success w-100">1초 주기 실행 시작</button>
+          </div>
+          <div class="col-6">
+            <button id="btn-interval-cancel" class="btn btn-outline-danger w-100">반복 실행 강제 중단</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 실시간 로그 모니터 -->
+    <div class="card shadow-sm">
+      <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+        <span class="fw-bold">🖥️ 실시간 로그 모니터 (Live Monitor)</span>
+        <button id="btn-clear" class="btn btn-outline-light btn-xs py-0 px-2" style="font-size: 11px;">Clear</button>
+      </div>
+      <div class="card-body bg-dark p-2">
+        <div id="log-monitor"></div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // 🔗 관련 교안: [[162-1_Callback.md]]
+
+    const btnTimeoutStart = document.querySelector('#btn-timeout-start');
+    const btnTimeoutCancel = document.querySelector('#btn-timeout-cancel');
+    const btnIntervalStart = document.querySelector('#btn-interval-start');
+    const btnIntervalCancel = document.querySelector('#btn-interval-cancel');
+    const btnClear = document.querySelector('#btn-clear');
+    const logMonitor = document.querySelector('#log-monitor');
+
+    function log(message) {
+      console.log(message);
+      const line = document.createElement('div');
+      line.className = 'mb-1';
+      line.textContent = `> ${message}`;
+      logMonitor.appendChild(line);
+      logMonitor.scrollTop = logMonitor.scrollHeight;
+    }
+
+    btnClear.addEventListener('click', () => {
+      logMonitor.innerHTML = '';
+    });
+
+    let timeoutId = null;
+    let intervalId = null;
+    let count = 0;
+
+    // 1. setTimeout 예약 및 해제
+    btnTimeoutStart.addEventListener('click', () => {
+      // 기존에 실행 중인 타이머가 있으면 해제하여 중복 방지
+      if (timeoutId !== null) {
+        clearTimeout(timeoutId);
+      }
+      
+      log('setTimeout: 2초 뒤 실행 예약 시작');
+      timeoutId = setTimeout(() => {
+        log('setTimeout 콜백 실행 완료! (2초 경과)');
+        timeoutId = null;
+      }, 2000);
+    });
+
+    btnTimeoutCancel.addEventListener('click', () => {
+      if (timeoutId !== null) {
+        clearTimeout(timeoutId);
+        log('clearTimeout: 대기 중인 2초 타이머가 성공적으로 취소되었습니다.');
+        timeoutId = null;
+      } else {
+        log('clearTimeout 실패: 활성화된 대기 타이머가 없습니다.');
+      }
+    });
+
+    // 2. setInterval 주기 실행 및 3회 반복 후 자동/수동 해제
+    btnIntervalStart.addEventListener('click', () => {
+      // 중복 방지
+      if (intervalId !== null) {
+        clearInterval(intervalId);
+      }
+      
+      count = 0;
+      log('setInterval: 1초 주기 반복 시작');
+      
+      intervalId = setInterval(() => {
+        count++;
+        log(`setInterval 콜백: ${count}초 경과`);
+        
+        // 3초가 되는 순간 자동으로 해제
+        if (count === 3) {
+          clearInterval(intervalId);
+          log('clearInterval: 3초에 도달하여 반복 실행이 자동 종료되었습니다.');
+          intervalId = null;
+        }
+      }, 1000);
+    });
+
+    btnIntervalCancel.addEventListener('click', () => {
+      if (intervalId !== null) {
+        clearInterval(intervalId);
+        log(`clearInterval: 현재 ${count}초 시점에서 반복 작업을 수동 중단했습니다.`);
+        intervalId = null;
+      } else {
+        log('clearInterval 실패: 실행 중인 반복 작업이 없습니다.');
+      }
+    });
+  </script>
+</body>
+</html>
