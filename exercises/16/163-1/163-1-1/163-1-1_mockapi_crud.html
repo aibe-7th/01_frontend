@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MockAPI CRUD (Fetch vs Axios)</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>사용자 관리</h1>
+    <p class="description">MockAPI를 연동한 사용자 정보 관리 화면입니다.</p>
+
+    <!-- 등록 폼 -->
+    <form id="user-form" class="card">
+      <h2>사용자 등록</h2>
+      <div class="form-group">
+        <label for="username">이름</label>
+        <input type="text" id="username" placeholder="이름 입력" required>
+      </div>
+      <div class="form-group">
+        <label for="useremail">이메일</label>
+        <input type="email" id="useremail" placeholder="이메일 입력" required>
+      </div>
+      <button type="submit" id="submit-btn">등록</button>
+    </form>
+
+    <!-- 수정 폼 (기본 숨김) -->
+    <div id="edit-area" class="card hidden">
+      <h2>사용자 정보 수정</h2>
+      <input type="hidden" id="edit-id">
+      <div class="form-group">
+        <label for="edit-username">이름</label>
+        <input type="text" id="edit-username" required>
+      </div>
+      <div class="form-group">
+        <label for="edit-useremail">이메일</label>
+        <input type="email" id="edit-useremail" required>
+      </div>
+      <div class="btn-group">
+        <button type="button" id="update-btn">수정 완료</button>
+        <button type="button" id="cancel-btn">취소</button>
+      </div>
+    </div>
+
+    <!-- 사용자 목록 -->
+    <div class="card">
+      <h2>사용자 목록</h2>
+      <div class="list-actions">
+        <button type="button" id="load-btn">목록 불러오기</button>
+      </div>
+      <ul id="user-list" class="user-list"></ul>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

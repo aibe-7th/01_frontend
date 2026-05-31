@@ -127,6 +127,11 @@
 | 차시 | 주제 | 슬라이드 | 실습 |
 | --- | --- | --- | --- |
 | 161-1 | Document Object Model | [PDF](<slides/16/161-1_Document Object Model.pdf>) | [exercises/16/161-1/](exercises/16/161-1/) |
+| 161-2 | Event | [PDF](<slides/16/161-2_Event.pdf>) | [exercises/16/161-2/](exercises/16/161-2/) |
+| 161-3 | Browser Object Model | [PDF](<slides/16/161-3_Browser Object Model.pdf>) | [exercises/16/161-3/](exercises/16/161-3/) |
+| 162-1 | JavaScript Callback | [PDF](<slides/16/162-1_JavaScript Callback.pdf>) | [exercises/16/162-1/](exercises/16/162-1/) |
+| 162-2 | JavaScript Promise | [PDF](<slides/16/162-2_JavaScript Promise.pdf>) | [exercises/16/162-2/](exercises/16/162-2/) |
+| 163-1 | JavaScript Fetch | [PDF](<slides/16/163-1_JavaScript Fetch.pdf>) | [exercises/16/163-1/](exercises/16/163-1/) |
 
 </details>
 
