@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supabase 실습 2 - 아바타 프로필 업로드 및 스토리지 연동</title>
+  <!-- 표준 폰트 및 라이트 테마 연결 -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Supabase JS SDK CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>프로필 아바타 설정</h1>
+      <p class="subtitle">Supabase Storage(객체 스토리지)에 이미지를 올리고 DB 테이블에 연결하기</p>
+    </header>
+
+    <!-- 프로필 관리 카드 -->
+    <section class="profile-section">
+      <h3>프로필 아바타 업로드</h3>
+      
+      <!-- 아바타 이미지 미리보기 영역 -->
+      <div class="preview-container">
+        <div class="image-frame">
+          <img id="avatar-img" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150" alt="아바타 기본 이미지">
+          <!-- 업로드 진행 중 로딩 레이어 -->
+          <div id="avatar-loader" class="loader hidden">
+            <span class="spinner"></span>
+          </div>
+        </div>
+        <p class="description">이미지 파일을 선택하고 닉네임을 작성해 프로필을 저장하세요.</p>
+      </div>
+
+      <!-- 프로필 폼 -->
+      <form id="profile-form">
+        <!-- 파일 업로드 인풋 -->
+        <div class="form-group">
+          <label for="avatar-file">사진 첨부</label>
+          <div class="file-input-wrapper">
+            <input type="file" id="avatar-file" accept="image/*">
+            <button type="button" class="btn btn-outline" id="btn-file-trigger">사진 선택</button>
+            <span id="file-name-display" class="file-name-text">선택된 파일이 없습니다.</span>
+          </div>
+          <span class="warning-text">※ 파일 직접 노출을 위해 Storage 버킷 권한이 'Public'으로 설정되어야 합니다.</span>
+        </div>
+
+        <!-- 닉네임 입력 -->
+        <div class="form-group">
+          <label for="profile-nickname">닉네임</label>
+          <input type="text" id="profile-nickname" placeholder="닉네임을 입력하세요" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">프로필 저장</button>
+      </form>
+    </section>
+
+    <!-- 전체 프로필 리스트 갤러리 -->
+    <section class="gallery-section">
+      <div class="gallery-header">
+        <h3>등록된 프로필 리스트</h3>
+        <button id="btn-refresh" class="btn btn-sm">새로고침</button>
+      </div>
+      <div id="profiles-grid" class="profiles-grid">
+        <div class="status-msg">갤러리 데이터를 불러오는 중입니다...</div>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

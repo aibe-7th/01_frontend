@@ -1,0 +1,286 @@
+/* ----------------------------------------------------
+   Supabase 실습 1 - 게시판 기본 스타일시트 (최소한의 Flex & 박스모델만 적용)
+   ---------------------------------------------------- */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  line-height: 1.5;
+  padding: 20px;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.container {
+  max-width: 650px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 헤더 영역 */
+.header {
+  text-align: center;
+  padding: 10px;
+  border-bottom: 2px solid #ddd;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+/* 공통 섹션 박스 */
+section {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 20px;
+}
+
+h3 {
+  margin-bottom: 15px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #eee;
+}
+
+/* 폼 요소 */
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  font-size: 0.95rem;
+  padding: 8px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.form-row input {
+  flex: 1;
+}
+
+/* 버튼 정의 */
+.btn {
+  font-size: 0.9rem;
+  padding: 8px 16px;
+  border: 1px solid #999;
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #e0e0e0;
+}
+
+.btn-primary {
+  background-color: #0066cc;
+  color: #fff;
+  border-color: #0052a3;
+}
+
+.btn-primary:hover {
+  background-color: #0052a3;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border-color: #ccc;
+}
+
+.btn-danger {
+  background-color: #cc0000;
+  color: #fff;
+  border-color: #a30000;
+}
+
+.btn-danger:hover {
+  background-color: #a30000;
+}
+
+.btn-sm {
+  padding: 4px 8px;
+  font-size: 0.8rem;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+/* 인증(Auth) UI */
+.description {
+  color: #666;
+  font-size: 0.85rem;
+  margin-bottom: 15px;
+}
+
+.btn-group {
+  display: flex;
+  gap: 10px;
+}
+
+.user-info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-tag {
+  background-color: #e6ffe6;
+  color: #008000;
+  border: 1px solid #b3ffb3;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.user-email {
+  font-size: 0.9rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* 게시글 목록 및 카드 */
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.post-card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.post-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dashed #eee;
+  padding-bottom: 5px;
+}
+
+.post-card-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.post-card-meta {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.post-card-body {
+  font-size: 0.95rem;
+  white-space: pre-wrap;
+}
+
+.post-card-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+/* 댓글 박스 */
+.comments-container {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.comments-title {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #555;
+}
+
+.comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.comment-item {
+  padding: 6px;
+  background-color: #fff;
+  border: 1px solid #eee;
+  font-size: 0.85rem;
+}
+
+.comment-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #777;
+  margin-bottom: 3px;
+}
+
+.comment-meta .author {
+  font-weight: bold;
+  color: #333;
+}
+
+.comment-content {
+  color: #222;
+}
+
+.comment-form {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.comment-form .commenter-input {
+  width: 100px;
+  flex-shrink: 0;
+}
+
+.comment-form .content-input {
+  flex-grow: 1;
+}
+
+.status-msg {
+  text-align: center;
+  color: #888;
+  padding: 20px;
+  border: 1px dashed #ccc;
+}

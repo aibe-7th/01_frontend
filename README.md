@@ -132,6 +132,7 @@
 | 162-1 | JavaScript Callback | [PDF](<slides/16/162-1_JavaScript Callback.pdf>) | [exercises/16/162-1/](exercises/16/162-1/) |
 | 162-2 | JavaScript Promise | [PDF](<slides/16/162-2_JavaScript Promise.pdf>) | [exercises/16/162-2/](exercises/16/162-2/) |
 | 163-1 | JavaScript Fetch | [PDF](<slides/16/163-1_JavaScript Fetch.pdf>) | [exercises/16/163-1/](exercises/16/163-1/) |
+| 163-2 | Supabase | [PDF](<slides/16/163-2_Supabase.pdf>) | [exercises/16/163-2/](exercises/16/163-2/) |
 
 </details>
 
