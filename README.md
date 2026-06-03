@@ -13,7 +13,7 @@
 | 전체 슬라이드 | [slides/](slides/) |
 | 전체 실습 | [exercises/](exercises/) |
 | HTML/CSS 실습 | [exercises/11/](exercises/11/), [exercises/12/](exercises/12/) |
-| JavaScript 실습 | [exercises/14/](exercises/14/), [exercises/16/](exercises/16/) |
+| JavaScript 실습 | [exercises/14/](exercises/14/), [exercises/16/](exercises/16/), [exercises/17/](exercises/17/) |
 
 ## 학습 자료
 
@@ -145,7 +145,7 @@
 
 | 차시 | 주제 | 슬라이드 | 실습 |
 | --- | --- | --- | --- |
-| 171 | Gen AI 활용 웹앱 개발 | [PDF](<slides/17/171_Gen AI 활용 웹앱 개발.pdf>) | - |
+| 171 | Gen AI 활용 웹앱 개발 | [PDF](<slides/17/171_Gen AI 활용 웹앱 개발.pdf>) | [exercises/17/171/](exercises/17/171/) |
 
 </details>
 
