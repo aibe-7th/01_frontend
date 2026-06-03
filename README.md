@@ -136,6 +136,19 @@
 
 </details>
 
+<details>
+<summary>17. Gen AI 활용 웹앱 개발</summary>
+
+<br>
+
+![AI](https://img.shields.io/badge/AI-412991?style=flat-square) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=000000)
+
+| 차시 | 주제 | 슬라이드 | 실습 |
+| --- | --- | --- | --- |
+| 171 | Gen AI 활용 웹앱 개발 | [PDF](<slides/17/171_Gen AI 활용 웹앱 개발.pdf>) | - |
+
+</details>
+
 ## 폴더 규칙
 
 - `slides/{차시코드 앞 2자리}`: 해당 분류의 강의 자료
