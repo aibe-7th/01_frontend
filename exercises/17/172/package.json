@@ -1,0 +1,26 @@
+{
+  "name": "express-langchainjs-agent-practice",
+  "version": "1.0.0",
+  "description": "Express + LangChainJS Agent practice project steps 01-05",
+  "main": "01_basic_chain/server.js",
+  "scripts": {
+    "01": "nodemon 01_basic_chain/server.js",
+    "02": "nodemon 02_structured_output/server.js",
+    "03": "nodemon 03_chat_memory/server.js",
+    "04": "nodemon 04_fallback_retry/server.js",
+    "05": "nodemon 05_agent_patterns/server.js",
+    "start": "node 05_agent_patterns/server.js"
+  },
+  "dependencies": {
+    "@langchain/core": "^1.1.48",
+    "@langchain/google-genai": "^2.1.31",
+    "@langchain/groq": "^1.2.1",
+    "@langchain/openai": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
