@@ -146,6 +146,7 @@
 | 차시 | 주제 | 슬라이드 | 실습 |
 | --- | --- | --- | --- |
 | 171 | Gen AI 활용 웹앱 개발 | [PDF](<slides/17/171_Gen AI 활용 웹앱 개발.pdf>) | [exercises/17/171/](exercises/17/171/) |
+| 172 | LangChain과 에이전트 개발 | [PDF](<slides/17/172_LangChain과 에이전트 개발.pdf>) | [exercises/17/172/](exercises/17/172/) |
 
 </details>
 
